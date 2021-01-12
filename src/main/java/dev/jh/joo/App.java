@@ -1,6 +1,7 @@
 package dev.jh.joo;
 
 public class App {
+    
 
     private AppStatus status = AppStatus.DRAFT;
     private int limit;
