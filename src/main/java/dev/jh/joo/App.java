@@ -1,10 +1,14 @@
 package dev.jh.joo;
 
+import lombok.ToString;
+
+@ToString
 public class App {
     
 
     private AppStatus status = AppStatus.DRAFT;
     private int limit;
+
 
     public App(int limit) {
         if(limit <= 0){
