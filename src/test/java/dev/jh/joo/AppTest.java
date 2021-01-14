@@ -1,9 +1,10 @@
 package dev.jh.joo;
 
+import dev.jh.joo.junit5.App;
+import dev.jh.joo.junit5.AppStatus;
 import org.junit.jupiter.api.*;
 
 import java.time.Duration;
-import java.util.function.Supplier;
 
 import static org.junit.jupiter.api.Assertions.*;
 
