@@ -1,10 +1,8 @@
-package dev.jh.joo;
+package dev.jh.joo.junit5;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(ExtensionAppTest.class) // JUnit5 화장모델 선언적 방식
 class TagAppTest {

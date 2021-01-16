@@ -1,4 +1,4 @@
-package dev.jh.joo;
+package dev.jh.joo.junit5;
 
 import dev.jh.joo.junit5.App;
 import org.junit.jupiter.api.Assumptions;

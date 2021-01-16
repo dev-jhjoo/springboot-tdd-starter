@@ -1,4 +1,4 @@
-package dev.jh.joo;
+package dev.jh.joo.junit5;
 
 import dev.jh.joo.junit5.App;
 import dev.jh.joo.junit5.AppStatus;
@@ -73,6 +73,7 @@ class AppTest {
     }
 
     @Test
+    @DisplayName("time out test")
     void assertTimeOutTest(){
         assertTimeout(Duration.ofSeconds(1), () -> new App(10)); // 성공
 

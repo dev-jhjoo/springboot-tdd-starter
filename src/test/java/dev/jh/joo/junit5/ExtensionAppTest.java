@@ -1,13 +1,10 @@
-package dev.jh.joo;
+package dev.jh.joo.junit5;
 
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
 import org.junit.jupiter.api.extension.BeforeTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
 import java.lang.reflect.Method;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 
 //JUnit5 확장모델
