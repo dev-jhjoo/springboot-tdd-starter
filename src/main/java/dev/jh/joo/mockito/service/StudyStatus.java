@@ -1,4 +1,5 @@
 package dev.jh.joo.mockito.service;
 
-public class StudyStatus {
+public enum StudyStatus {
+    DRAFT, OPENED, ENDED
 }

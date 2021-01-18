@@ -11,8 +11,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -27,9 +29,10 @@ public class ExampleTest {
     void findMember(){
         // given
         Member member = Member.builder().id(1L).email("dev.jh.joo@gmail.com").build();
+//        when(service.findById(1L)).thenReturn(Optional.of(member));
+        given(service.findById(1L)).willReturn(Optional.of(member));
 
         // when
-        when(service.findById(1L)).thenReturn(Optional.of(member));
         Optional<Member> findMember = service.findById(1L);
 
         // then
@@ -50,6 +53,29 @@ public class ExampleTest {
                 () -> assertEquals(1, repository.save(study).getLimitCount()),
                 () -> assertEquals("TDD", repository.save(study).getName())
         );
+    }
+
+
+    @DisplayName("다른 사용자가 볼 수 있도록 스터디를 공개한다.")
+    @Test
+    void openStudy(){
+        // Given
+        StudyService studyService = new StudyService(service, repository);
+        Study study = new Study(10, "Java8");
+        given(repository.save(study)).willReturn(study);
+
+        // When
+        studyService.openStudy(study);
+
+        // Then
+        assertAll(
+                () -> assertEquals(StudyStatus.OPENED, study.getStatus()),
+                () -> assertNotNull(study.getOpenedDateTime()),
+                () -> verify(service).notify(study),
+                () -> then(service).should().notify(study)
+        );
+
+
     }
 
 

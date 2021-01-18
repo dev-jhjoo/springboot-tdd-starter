@@ -4,6 +4,7 @@ import dev.jh.joo.mockito.domain.Member;
 import dev.jh.joo.mockito.domain.Study;
 import dev.jh.joo.mockito.member.MemberService;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 public class StudyService {
@@ -27,5 +28,13 @@ public class StudyService {
         memberService.notify(newStudy);
         memberService.notify(member.get());
         return newStudy;
+    }
+
+    public Study openStudy(Study study) {
+//        study.setStatus(StudyStatus.OPENED);
+//        study.setOpenedDateTime(LocalDateTime.now());
+        study.open();
+        memberService.notify(study);
+        return repository.save(study);
     }
 }
