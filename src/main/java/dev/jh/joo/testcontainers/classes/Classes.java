@@ -1,5 +1,4 @@
-package dev.jh.joo.mockito.domain;
-
+package dev.jh.joo.testcontainers.classes;
 
 import lombok.*;
 
@@ -7,16 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@ToString
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
 @Entity
-public class Member {
+public class Classes {
 
     @Id
     @GeneratedValue
     private long id;
-    private String email;
+    private String name;
 }

@@ -3,14 +3,22 @@ package dev.jh.joo.mockito.domain;
 import dev.jh.joo.mockito.service.StudyStatus;
 import lombok.Getter;
 import lombok.ToString;
-import org.apache.tomcat.jni.Local;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
 @ToString
 @Getter
+@Entity
 public class Study {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
     private int limitCount;
     private String name;
     private StudyStatus status;
