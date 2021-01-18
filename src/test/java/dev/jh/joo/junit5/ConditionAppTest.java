@@ -1,5 +1,6 @@
-package dev.jh.joo;
+package dev.jh.joo.junit5;
 
+import dev.jh.joo.junit5.App;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.*;

@@ -1,4 +1,4 @@
-package dev.jh.joo;
+package dev.jh.joo.junit5;
 
 public class ExtensionApp {
 }

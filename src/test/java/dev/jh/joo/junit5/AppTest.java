@@ -1,9 +1,10 @@
-package dev.jh.joo;
+package dev.jh.joo.junit5;
 
+import dev.jh.joo.junit5.App;
+import dev.jh.joo.junit5.AppStatus;
 import org.junit.jupiter.api.*;
 
 import java.time.Duration;
-import java.util.function.Supplier;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -72,6 +73,7 @@ class AppTest {
     }
 
     @Test
+    @DisplayName("time out test")
     void assertTimeOutTest(){
         assertTimeout(Duration.ofSeconds(1), () -> new App(10)); // 성공
 
