@@ -1,4 +1,4 @@
-package dev.jh.joo.testcontainers.classes;
+package dev.jh.joo.testcontainers;
 
 import lombok.*;
 
@@ -14,6 +14,6 @@ public class Classes {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String name;
 }
