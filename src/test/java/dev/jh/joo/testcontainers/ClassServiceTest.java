@@ -10,6 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.ApplicationContextInitializer;
@@ -48,12 +49,14 @@ public class ClassServiceTest {
     // 10.이렇게 생성하는것 대신에 @Slf4j 를 사용할 수 있다.
     Logger LOGGER = LoggerFactory.getLogger(ClassServiceTest.class);
 
-
     @Autowired
     ClassesRepository classesRepository;
 
     @Autowired
     Environment environment;
+
+    @Value("${container.port}")
+    int port;
 
 //    @Container
 //    static PostgreSQLContainer postgreSQLContainer =
@@ -69,8 +72,9 @@ public class ClassServiceTest {
             .withExposedPorts(5432) // local port 지정
 //            .waitingFor(Wait.forListeningPort())
 //            .waitingFor(Wait.forHttp("/test/check")) // 이런식으로 원하는 end-point에 요청이 오는지, 요청이 올때까지 기다리는 그런 기능
-            .withEnv("POSTGRES_HOST_AUTH_METHOD" ,"trust")
-//            .withEnv("POSTGRES_PASSWORD", "jhjoo")
+//            .withEnv("POSTGRES_HOST_AUTH_METHOD" ,"trust")
+            .withEnv("POSTGRES_USER", "jhjoo")
+            .withEnv("POSTGRES_PASSWORD", "jhjoo")
 //            .withEnv("POSTGRES_DB", "tc-test")
     ;
 
@@ -85,7 +89,7 @@ public class ClassServiceTest {
     // Containers를 static으로 공유하고 해당 자원을 각 테스트 실행시 마다 deleteAll하면 좀 더 효율적으로 테스트 가능
     @BeforeEach
     void beforeEach(){
-        log.info("followOutput = Before each =================");
+        log.info("followOutput Before each =================");
         // local 5432 port에 mapping된 docker port 확인
 //        System.out.println("getMappedPort=" + genericContainer.getMappedPort(15432));
         System.out.println("getLogs=" + genericContainer.getLogs()); // container log 확인
@@ -93,9 +97,7 @@ public class ClassServiceTest {
         classesRepository.findAll().forEach(System.out::println);
         System.out.println("============");
         classesRepository.deleteAll();
-
-        System.out.println("environment.getProperty(\"container.port\")=" + environment.getProperty("container.port"));
-        LOGGER.info("followOutput = =============================");
+        LOGGER.info("LOGGER   =============================");
     }
 
     @Test
@@ -117,7 +119,8 @@ public class ClassServiceTest {
     @Test
     void applicationContextInitTest(){
         // test-container 생성하고 해당 정보를 ApplicationContextInitializer 에 env 를 통해서 등록하기
-
+        System.out.println("environment.getProperty(\"container.port\")=" + environment.getProperty("container.port"));
+        System.out.println("@Value(\"container.port\")=" + port);
     }
 
     static class ContainerPropertyInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext>{
