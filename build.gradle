@@ -22,9 +22,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.projectlombok:lombok:1.18.16'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.postgresql:postgresql'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.postgresql:postgresql'
 	testImplementation 'org.testcontainers:junit-jupiter:1.15.1'
 	testImplementation 'org.testcontainers:jdbc:1.15.1'
 	testImplementation 'org.testcontainers:postgresql:1.15.1'
